@@ -1,0 +1,103 @@
+//declara saidas pwm via A
+const int rpSa = 6;
+const int gpSa = 3;
+const int bpSa = 5;
+//declara saidas pwm via B
+const int rpSb = 11;
+const int gpSb = 9;
+const int bpSb = 10;
+
+//declara botões via A
+const int A1 = 8;
+const int A2 = 12;
+const int A3 = 13;
+//declara botôes via B
+const int B1 = 2;
+const int B2 = 4;
+const int B3 = 7;
+
+//variaveis botões via A
+int A1value = 0;
+int A2value = 0;
+int A3value = 0;
+//variaveis botões via B
+int B1value = 0;
+int B2value = 0;
+int B3value = 0;
+
+//variaveis vias A e B
+int ViaA = 0;
+int ViaB = 0;   
+
+void setup()
+{
+  //define os botões como entrada
+  pinMode(A1, INPUT);
+  pinMode(A2, INPUT);
+  pinMode(A3, INPUT);
+  pinMode(B1, INPUT);
+  pinMode(B2, INPUT);
+  pinMode(B3, INPUT);
+  
+  //define as portas PWM como sáida
+  pinMode(rpSa, OUTPUT);
+  pinMode(gpSa, OUTPUT);
+  pinMode(bpSa, OUTPUT);
+  pinMode(rpSb, OUTPUT);
+  pinMode(gpSb, OUTPUT);
+  pinMode(bpSb, OUTPUT);
+}
+
+void loop()
+{
+  //atribui a leitura das portas às variaveis
+  A1value=digitalRead(A1);
+  A2value=digitalRead(A2);
+  A3value=digitalRead(A3);
+  B1value=digitalRead(B1);
+  B2value=digitalRead(B2);
+  B3value=digitalRead(B3);
+  
+  //atribui as variaveis dos botôes às vias
+  if (A1value == HIGH)
+  {
+  	ViaA == 1;  
+  }
+  if (A2value == HIGH)
+  {
+  	ViaA == 2;  
+  }
+  if (A3value == HIGH)
+  {
+  	ViaA == 3;  
+  }   
+ if (B1value == HIGH)
+  {
+  	ViaB == 1;  
+  }    
+  if (B2value == HIGH)
+  {
+  	ViaB == 2;  
+  }
+  if (B3value == HIGH)
+  {
+  	ViaB == 3;  
+  }
+  
+}
+
+//configura o LED RGB SA
+void SA(int rp_valueA, int gp_valueA, int bp_valueA)
+{
+  analogWrite(rpSa, rp_valueA);
+  analogWrite(gpSa, gp_valueA);
+  analogWrite(bpSa, bp_valueA);
+}
+
+//configura o LED RGB SB
+void SB(int rp_valueB, int gp_valueB, int bp_valueB)
+{
+  analogWrite(rpSb, rp_valueB);
+  analogWrite(gpSb, gp_valueB);
+  analogWrite(bpSb, bp_valueB);
+}
