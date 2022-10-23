@@ -29,6 +29,22 @@ int B3value = 0;
 int ViaA = 0;
 int ViaB = 0;   
 
+//configura o LED RGB SA
+void SA(int rp_valueA, int gp_valueA, int bp_valueA)
+{
+  analogWrite(rpSa, rp_valueA);
+  analogWrite(gpSa, gp_valueA);
+  analogWrite(bpSa, bp_valueA);
+}
+
+//configura o LED RGB SB
+void SB(int rp_valueB, int gp_valueB, int bp_valueB)
+{
+  analogWrite(rpSb, rp_valueB);
+  analogWrite(gpSb, gp_valueB);
+  analogWrite(bpSb, bp_valueB);
+}  
+
 void setup()
 {
   //define os botões como entrada
@@ -61,7 +77,7 @@ void loop()
   //atribui as variaveis dos botôes às vias
   if (A1value == HIGH)
   {
-  	ViaA = 1;  
+  	ViaA = 1; 
   }
   if (A2value == HIGH)
   {
@@ -83,20 +99,166 @@ void loop()
   {
   	ViaB = 3;  
   }
-}
-
-//configura o LED RGB SA
-void SA(int rp_valueA, int gp_valueA, int bp_valueA)
-{
-  analogWrite(rpSa, rp_valueA);
-  analogWrite(gpSa, gp_valueA);
-  analogWrite(bpSa, bp_valueA);
-}
-
-//configura o LED RGB SB
-void SB(int rp_valueB, int gp_valueB, int bp_valueB)
-{
-  analogWrite(rpSb, rp_valueB);
-  analogWrite(gpSb, gp_valueB);
-  analogWrite(bpSb, bp_valueB);
+  
+  //estrutura condicional para situações possíveis
+  
+  //ciclo básico
+  //A e B inferiores a 1km
+  if (ViaA==0 && ViaB==0)
+  {  
+    SA (0,255,0);
+    SB (255,0,0);
+    delay (2000);
+    SA (255,255,0);
+    delay (1000);
+    SA (255,0,0);
+    SB (0,255,0);
+    delay (2000);
+    SB (255,255,0);
+    delay(1000);
+  }
+  //1km em A e 1km em B
+  if (ViaA==1 && ViaB==1)
+  {
+    SA (0,255,0);
+    SB (255,0,0);
+    delay (3000);
+    SA (255,255,0);
+    delay (1000);
+    SA (255,0,0);
+    SB (0,255,0);
+    delay (3000);
+    SB (255,255,0);
+    delay(1000);
+    ViaA == 0;
+    ViaB == 0;    
+  }  
+  //2km em A e 2km em B
+  if (ViaA==2 && ViaB==2)
+  {   
+    SA (0,255,0);
+    SB (255,0,0);
+    delay (4000);
+    SA (255,255,0);
+    delay (1000);
+    SA (255,0,0);
+    SB (0,255,0);
+    delay (4000);
+    SB (255,255,0);
+    delay(1000);
+    ViaA == 0;
+    ViaB == 0;
+  }  
+  //3km em A e 3km em B
+  if (ViaA==3 && ViaB==3)
+  {
+    SA (0,255,0);
+    SB (255,0,0);
+    delay (5000);
+    SA (255,255,0);
+    delay (1000);
+    SA (255,0,0);
+    SB (0,255,0);
+    delay (5000);
+    SB (255,255,0);
+    delay(1000);
+    ViaA == 0;
+    ViaB == 0;
+  }  
+  //1km em A e 0km em B
+  if (ViaA==1 && ViaB==0)
+  {
+    SA (0,255,0);
+    SB (255,0,0);
+    delay (3000);
+    SA (255,255,0);
+    delay (1000);
+    SA (255,0,0);
+    SB (0,255,0);
+    delay (2000);
+    SB (255,255,0);
+    delay(1000);
+    ViaA == 0;
+    ViaB == 0;
+  }  
+  //2km em A e 1km em B
+  if (ViaA==2 && ViaB==1)
+  {
+    SA (0,255,0);
+    SB (255,0,0);
+    delay (4000);
+    SA (255,255,0);
+    delay (1000);
+    SA (255,0,0);
+    SB (0,255,0);
+    delay (3000);
+    SB (255,255,0);
+    delay(1000);
+    ViaA == 0;
+    ViaB == 0;
+  }
+  //3km em A e 2km em B
+  if (ViaA==3 && ViaB==2)
+  {
+    SA (0,255,0);
+    SB (255,0,0);
+    delay (5000);
+    SA (255,255,0);
+    delay (1000);
+    SA (255,0,0);
+    SB (0,255,0);
+    delay (4000);
+    SB (255,255,0);
+    delay(1000);
+    ViaA == 0;
+    ViaB == 0;
+  }
+  //0km em A e 1km em B
+  if (ViaA==0 && ViaB==1)
+  {
+    SA (0,255,0);
+    SB (255,0,0);
+    delay (2000);
+    SA (255,255,0);
+    delay (1000);
+    SA (255,0,0);
+    SB (0,255,0);
+    delay (3000);
+    SB (255,255,0);
+    delay(1000);
+    ViaA == 0;
+    ViaB == 0;
+  }
+  //1km em A e 2km em B
+  if (ViaA==1 && ViaB==2)
+  {
+    SA (0,255,0);
+    SB (255,0,0);
+    delay (3000);
+    SA (255,255,0);
+    delay (1000);
+    SA (255,0,0);
+    SB (0,255,0);
+    delay (4000);
+    SB (255,255,0);
+    delay(1000);
+    ViaA == 0;
+    ViaB == 0;
+  }
+  //2km em A e 3km em B
+  if (ViaA==2 && ViaB==3)
+  {
+    SA (0,255,0);
+    SB (255,0,0);
+    delay (4000);
+    SA (255,255,0);
+    delay (1000);
+    SA (255,0,0);
+    SB (0,255,0);
+    delay (5000);
+    SB (255,255,0);
+    delay(1000);
+    ViaA == 0;
+    ViaB == 0;
+  }
 }
