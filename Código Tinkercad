@@ -29,6 +29,9 @@ int B3value = 0;
 int ViaA = 0;
 int ViaB = 0;   
 
+//variaveis ciclos A e B
+int cycle = 1; 
+
 //configura o LED RGB SA
 void SA(int rp_valueA, int gp_valueA, int bp_valueA)
 {
@@ -62,6 +65,8 @@ void setup()
   pinMode(rpSb, OUTPUT);
   pinMode(gpSb, OUTPUT);
   pinMode(bpSb, OUTPUT);
+  
+  Serial.begin(2400);
 }
 
 void loop()
@@ -78,6 +83,7 @@ void loop()
   if (A1value == HIGH)
   {
   	ViaA = 1; 
+    Serial.println("a1");
   }
   if (A2value == HIGH)
   {
@@ -104,8 +110,9 @@ void loop()
   
   //ciclo básico
   //A e B inferiores a 1km
-  if (ViaA==0 && ViaB==0)
+  if (ViaA==0 && ViaB==0 && cycle==1)
   {  
+    cycle=0;
     SA (0,255,0);
     SB (255,0,0);
     delay (2000);
@@ -116,10 +123,12 @@ void loop()
     delay (2000);
     SB (255,255,0);
     delay(1000);
+    cycle=1;
   }
   //1km em A e 1km em B
-  if (ViaA==1 && ViaB==1)
+  if (ViaA==1 && ViaB==1 && cycle==1)
   {
+    cycle=0;
     SA (0,255,0);
     SB (255,0,0);
     delay (3000);
@@ -130,12 +139,14 @@ void loop()
     delay (3000);
     SB (255,255,0);
     delay(1000);
-    ViaA == 0;
-    ViaB == 0;    
+    ViaA = 0;
+    ViaB = 0;
+    cycle=1;
   }  
   //2km em A e 2km em B
-  if (ViaA==2 && ViaB==2)
+  if (ViaA==2 && ViaB==2 && cycle==1)
   {   
+    cycle=0;
     SA (0,255,0);
     SB (255,0,0);
     delay (4000);
@@ -146,12 +157,14 @@ void loop()
     delay (4000);
     SB (255,255,0);
     delay(1000);
-    ViaA == 0;
-    ViaB == 0;
+    ViaA = 0;
+    ViaB = 0;
+    cycle=1;
   }  
   //3km em A e 3km em B
-  if (ViaA==3 && ViaB==3)
+  if (ViaA==3 && ViaB==3 && cycle==1)
   {
+    cycle=0;
     SA (0,255,0);
     SB (255,0,0);
     delay (5000);
@@ -162,12 +175,14 @@ void loop()
     delay (5000);
     SB (255,255,0);
     delay(1000);
-    ViaA == 0;
-    ViaB == 0;
+    ViaA = 0;
+    ViaB = 0;
+    cycle=1;
   }  
   //1km em A e 0km em B
-  if (ViaA==1 && ViaB==0)
+  if (ViaA==1 && ViaB==0 && cycle==1)
   {
+    cycle=0;
     SA (0,255,0);
     SB (255,0,0);
     delay (3000);
@@ -178,12 +193,14 @@ void loop()
     delay (2000);
     SB (255,255,0);
     delay(1000);
-    ViaA == 0;
-    ViaB == 0;
+    ViaA = 0;
+    ViaB = 0;
+    cycle=1;
   }  
   //2km em A e 1km em B
-  if (ViaA==2 && ViaB==1)
+  if (ViaA==2 && ViaB==1 && cycle==1)
   {
+    cycle=0;
     SA (0,255,0);
     SB (255,0,0);
     delay (4000);
@@ -194,12 +211,14 @@ void loop()
     delay (3000);
     SB (255,255,0);
     delay(1000);
-    ViaA == 0;
-    ViaB == 0;
+    ViaA = 0;
+    ViaB = 0;
+    cycle=1;
   }
   //3km em A e 2km em B
-  if (ViaA==3 && ViaB==2)
+  if (ViaA==3 && ViaB==2 && cycle==1)
   {
+    cycle=0;
     SA (0,255,0);
     SB (255,0,0);
     delay (5000);
@@ -210,12 +229,14 @@ void loop()
     delay (4000);
     SB (255,255,0);
     delay(1000);
-    ViaA == 0;
-    ViaB == 0;
+    ViaA = 0;
+    ViaB = 0;
+    cycle=1;
   }
   //0km em A e 1km em B
-  if (ViaA==0 && ViaB==1)
+  if (ViaA==0 && ViaB==1 && cycle==1)
   {
+    cycle=0;
     SA (0,255,0);
     SB (255,0,0);
     delay (2000);
@@ -226,12 +247,14 @@ void loop()
     delay (3000);
     SB (255,255,0);
     delay(1000);
-    ViaA == 0;
-    ViaB == 0;
+    ViaA = 0;
+    ViaB = 0;
+    cycle=1;
   }
   //1km em A e 2km em B
-  if (ViaA==1 && ViaB==2)
+  if (ViaA==1 && ViaB==2 && cycle==1)
   {
+    cycle=0;
     SA (0,255,0);
     SB (255,0,0);
     delay (3000);
@@ -242,23 +265,26 @@ void loop()
     delay (4000);
     SB (255,255,0);
     delay(1000);
-    ViaA == 0;
-    ViaB == 0;
+    ViaA = 0;
+    ViaB = 0;
+    cycle==1;
   }
-  //2km em A e 3km em B
-  if (ViaA==2 && ViaB==3)
+  //3km em A e 0km em B
+  if (ViaA==3 && ViaB==0 && cycle==1)
   {
+   cycle==0;
     SA (0,255,0);
     SB (255,0,0);
-    delay (4000);
+    delay (5000);
     SA (255,255,0);
     delay (1000);
     SA (255,0,0);
     SB (0,255,0);
-    delay (5000);
+    delay (2000);
     SB (255,255,0);
     delay(1000);
-    ViaA == 0;
-    ViaB == 0;
+    ViaA = 0;
+    ViaB = 0;
+    cycle=1;
   }
 }
